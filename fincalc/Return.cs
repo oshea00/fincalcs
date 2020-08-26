@@ -8,7 +8,7 @@ namespace fincalc
         [JsonConverter(typeof(JsonDateTimeConverter))]
         public DateTime EffectiveDate { get; set; }
         [JsonConverter(typeof(JsonDecimalConverter))]
-        public decimal Rate { get; set; }
+        public decimal TotalReturn { get; set; }
     }
 
 }

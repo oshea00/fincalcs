@@ -33,7 +33,7 @@ namespace fincalc.test
                 FinCalcs.LinkedReturns(
                     ru1000
                         .Where(r=>r.EffectiveDate.Month == 1)
-                        .Select(r=>r.Rate)
+                        .Select(r=>r.TotalReturn)
                         .ToList());
             Assert.AreEqual(-0.000101m,Math.Round(janreturnRU1000,6));
         }
@@ -47,7 +47,7 @@ namespace fincalc.test
                             r=>r.EffectiveDate.Month == 1 &&
                                r.EffectiveDate.Day >= 15
                         )
-                        .Select(r=>r.Rate)
+                        .Select(r=>r.TotalReturn)
                         .ToList());
             Assert.AreEqual(-0.017554m,Math.Round(janreturnSP500,6));
         }
@@ -91,7 +91,7 @@ namespace fincalc.test
             var cumReturns = FinCalcs.ReturnsToMonthEnd(
                 sp500
                     .Where(r=>r.EffectiveDate.Month == 1)
-                    .Select(r=>r.Rate)
+                    .Select(r=>r.TotalReturn)
                     .ToList()
             );
 
@@ -104,7 +104,7 @@ namespace fincalc.test
         public void CanCalculateLinkedReturnsWithCumReturnsMonthToEnd() {
             var janSP500returns = sp500
                     .Where(r=>r.EffectiveDate.Month == 1)
-                    .Select(r=>r.Rate)
+                    .Select(r=>r.TotalReturn)
                     .ToList();
 
             var cumReturns = FinCalcs.ReturnsToMonthEnd(janSP500returns);            
@@ -124,6 +124,11 @@ namespace fincalc.test
             Assert.AreEqual(
                 Math.Round(longCalc,6),
                 Math.Round(quickCalc,6));
+        }
+
+        [Test]
+        public void CanCalculateSimulatedBenchmark() {
+            Assert.IsFalse(true);
         }
 
     }
